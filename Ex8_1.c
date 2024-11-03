@@ -9,11 +9,10 @@ volatile uint8_t nivel_alto = 0;   // Indicador de nível alto
 void setup_timers() {
     // Frequencia da CPU da 16MHz
     // Configurando o Timer1 para gerar interrupção a cada 2 segundos (0,5 Hz)
-    TCCR1B |= (1 << CS02) | (1 << CS00);  // Prescaler de 1024
-    TCCR1A = 0;  // Modo de operação normal
-    OCR1A = 31249;  // Valor calculado para 0,5 Hz
-    //OCR1A = fCPU/(prescaler * fDesejada) - 1
-    TIMSK1 |= (1 << OCIE1A);  // Habilita interrupção de comparação A do Timer1
+    TCCR1B |= (1 << WGM12) | (1 << CS02) | (1 << CS00);  // Modo CTC com prescaler de 1024
+    TCCR1A = 0;                                          // Define os bits de controle para o modo CTC
+    OCR1A = 31249;                                       // Valor calculado para 0,5 Hz
+    TIMSK1 |= (1 << OCIE1A);                             // Habilita interrupção de comparação A do Timer1
 }
 
 void setup_external_interrupts() {
