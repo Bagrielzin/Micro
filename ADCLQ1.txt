@@ -1,0 +1,6 @@
+//Questão 1
+//A primeira etapa da conversão é o filtro passa baixo,
+//onde são removidos as frequências indesejadas e os ruidos garantindo que o final fique dentro da linha de frequência,
+//depois é feita a amostragem e armazenamento na qual ele é amostrado em intervalos regualres e depois é armazenado temporariamente criando uma sequencia de valores discretos.
+// Posteriormente são enviados ao quantizador que dá as amostras um valor digital mais próximo convertendo o valor em discreto. 
+// Por último o codificador transforma os valores quantizados num código binário que é enviado para a saída do ADC

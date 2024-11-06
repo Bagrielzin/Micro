@@ -12,6 +12,7 @@ void setup_timers() {
     TCCR1B |= (1 << WGM12) | (1 << CS02) | (1 << CS00);  // Modo CTC com prescaler de 1024
     TCCR1A = 0;                                          // Define os bits de controle para o modo CTC
     OCR1A = 31249;                                       // Valor calculado para 0,5 Hz
+    // OCR1A = (fcpu)/(prescaler * fdesejada) - 1
     TIMSK1 |= (1 << OCIE1A);                             // Habilita interrupção de comparação A do Timer1
 }
 
