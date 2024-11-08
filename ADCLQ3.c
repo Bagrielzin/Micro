@@ -33,13 +33,13 @@ void readSensors() {
 
 // Configura o Timer 0 para gerar uma interrupção a cada 333 ms
 void initTimer() {
-    TCCR0A = (1 << WGM01);                 // Modo CTC
-    TCCR0B = (1 << CS02) | (1 << CS00);     // Prescaler de 1024
-    OCR0A = 78;                            // Para 333 ms (F_CPU = 16 MHz, 333 ms)
-    TIMSK0 |= (1 << OCIE0A);                // Habilita interrupção de comparação
+    TCCR1A = 0;
+    TCCR1B = (1 << WGM11)| (1 << CS12) | (1 << CS10);// Modo CTC, Prescaler de 1024
+    OCR1A = 5207; // (F_CPU = 16 MHz, f_des = 3Hz, prescaler = 1024)
+    TIMSK1 |= (1 << OCIE1A); // Habilita interrupção de comparação
 }
 
-ISR(TIMER0_COMPA_vect) {
+ISR(TIMER1_COMPA_vect) {
     readSensors();                          // Lê os sensores quando o timer gera a interrupção
 }
 
