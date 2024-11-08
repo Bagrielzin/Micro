@@ -5,7 +5,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A |= (35)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (35)/(1024*(1/freqCPU)) - 1;
     sei();
 
     while(1){
@@ -24,7 +24,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A |= (5000)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (5000)/(1024*(1/freqCPU)) - 1;
     DDRD |= (1 << PD0); //LED configurado como saída
     sei();
 
@@ -44,7 +44,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A |= (1000)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (1000)/(1024*(1/freqCPU)) - 1;
     DDRD = 0xFF; //LEDs D 0-7 configurados como saída
     sei();
 
@@ -65,7 +65,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A |= (per)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (per)/(1024*(1/freqCPU)) - 1;
     DDRD |= (1 << PD0); //LED configurado como saída
 
     EICRA |= (1 << ISC11) | (1 << ISC01); // Configura INT0 e INT1 para ativar em borda de descida
@@ -86,7 +86,7 @@ ISR(INT0_vect){ // mais velocidade
     per -= 100.9;
     uint8_t max = 0.1;
     if(per >= max){
-        OCR0A |= (uint8_t)((per)/(1024*(1/freqCPU)) - 1);
+        OCR0A = (uint8_t)((per)/(1024*(1/freqCPU)) - 1);
     }
     else{
         per = max;
@@ -95,7 +95,7 @@ ISR(INT0_vect){ // mais velocidade
 
 ISR(INT1_vect){ // menos velocidade
     per += 100.9;
-    OCR0A |= (uint8_t)((per)/(1024*(1/freqCPU)) - 1);
+    OCR0A = (uint8_t)((per)/(1024*(1/freqCPU)) - 1);
 }*/
 
 /* Contagem regressiva
@@ -105,7 +105,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A |= (2)/(1024*freqCPU) - 1;
+    OCR0A = (2)/(1024*freqCPU) - 1;
     DDRB = 0xFF; // Configura PB0-PB4 como saída
     
     EICRA |= (1 << ISC11);
