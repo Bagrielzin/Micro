@@ -5,7 +5,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A = (35)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (0.35)/(1024*(1/freqCPU)) - 1;
     sei();
 
     while(1){
@@ -24,7 +24,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A = (5000)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (5)/(1024*(1/freqCPU)) - 1;
     DDRD |= (1 << PD0); //LED configurado como saída
     sei();
 
@@ -44,7 +44,7 @@ int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
     TCCR0B |= (1 << CS02) | (1 << CS00); // prescaler 1024
     TIMSK0 |= (1 < OCIE0A); // habilita interrupção no timer 0 A
-    OCR0A = (1000)/(1024*(1/freqCPU)) - 1;
+    OCR0A = (1)/(1024*(1/freqCPU)) - 1;
     DDRD = 0xFF; //LEDs D 0-7 configurados como saída
     sei();
 
@@ -59,7 +59,7 @@ ISR(TIMER0_COMPA_vect){
 }*/
 
 /* Controle de velocidade
-uint8_t per = 5000;// período de 5000ms
+uint8_t per = 5;// período de 5s
 
 int main(){
     TCCR0A |= (1 << WGM01); // modo CTC
@@ -82,9 +82,10 @@ ISR(TIMER0_COMPA_vect){
     PORTD ^= (1 << PD0);
 }
 
+uint8_t max = 0.1;
+
 ISR(INT0_vect){ // mais velocidade
-    per -= 100.9;
-    uint8_t max = 0.1;
+    per -= 0.1;
     if(per >= max){
         OCR0A = (uint8_t)((per)/(1024*(1/freqCPU)) - 1);
     }
@@ -94,7 +95,7 @@ ISR(INT0_vect){ // mais velocidade
 }
 
 ISR(INT1_vect){ // menos velocidade
-    per += 100.9;
+    per += 0.1;
     OCR0A = (uint8_t)((per)/(1024*(1/freqCPU)) - 1);
 }*/
 
