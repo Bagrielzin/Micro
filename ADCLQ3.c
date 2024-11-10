@@ -8,9 +8,9 @@
 int sensores[2];  // Vetor para armazenar leituras dos sensores
 
 void initADC() {
-    ADMUX = (1 << REFS0);                 // Referência de tensão AVcc, canal 0
-    ADCSRA = (1 << ADEN) |                // Habilitar ADC
-              (1 << ADPS2) | (1 << ADPS1); // Divisor de clock 64 (F_CPU/64)
+    ADMUX = (1 << REFS0); // AVcc como referência, pino ADC0
+    ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // Prescaler de 128
+    ADCSRA |= (1 << ADEN) | (1 << ADIE); // Habilita o ADC
 }
 
 uint16_t readADC(uint8_t channel) {
