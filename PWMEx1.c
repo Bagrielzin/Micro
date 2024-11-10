@@ -6,6 +6,8 @@ ISR(INT0_vect){
     if(OCR0A * 1.05 < MAX_SPEED){
         OCR0A *= 1.05;
     }
+    else if(OCR0A == 0)
+        OCR0A = 1;
     else{
         OCR0A = MAX_SPEED;
     }
