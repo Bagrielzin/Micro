@@ -12,6 +12,7 @@ uint16_t ADC_read(){
 
 uint8_t bit_sequence[50]; // Armazena a sequência de bits
 uint8_t index = 0;
+uint8_t adc_result;
 
 ISR(TIMER1_COMPA_vect){
     adc_result = ADC_read();
