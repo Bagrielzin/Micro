@@ -13,7 +13,7 @@ void initADC() {
 }
 
 uint16_t readADC(uint8_t channel) {
-    ADMUX = (ADMUX & 0xF8) | (channel & 0x07); // Seleciona o canal ADC
+    ADMUX = (ADMUX & 0xF8) | channel; // Seleciona o canal ADC
     ADCSRA |= (1 << ADSC);                  // Inicia a conversão
     while (ADCSRA & (1 << ADSC));           // Aguarda a conversão terminar
     return ADC;                             // Retorna o valor lido

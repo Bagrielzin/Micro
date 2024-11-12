@@ -9,12 +9,12 @@ int sensores[2];  // Vetor para armazenar leituras dos sensores
 void initADC() {
     ADMUX = (1 << REFS0); // AVcc como referência, pino ADC0
     ADCSRA = (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // Prescaler de 128
-    ADCSRA |= (1 << ADEN) | (1 << ADIE); // Habilita o ADC
+    ADCSRA |= (1 << ADEN) | (1 << ADIE); // Habilita o ADC e a interrupção
     sei(); // Habilita interrupções
 }
 
 void ADC_start_conversion(uint8_t channel) {
-    ADMUX = (ADMUX & 0xF8) | (channel & 0x07); // Seleciona o canal ADC
+    ADMUX = (ADMUX & 0xF8) | channel; // Seleciona o canal ADC
     ADCSRA |= (1 << ADSC);                  // Inicia a conversão
 }
 
