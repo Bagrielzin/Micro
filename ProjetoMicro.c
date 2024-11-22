@@ -20,9 +20,9 @@ void setup_PWM(){
 }
 
 void ADC_init(){
-    ADMUX = (1 << REFS0);
-    ADCSRA = (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
-    ADCSRA |= (1 << ADEN) | (1 << ADIE); 
+    ADMUX = (1 << REFS0); // Vref
+    ADCSRA = (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // prescaler 1024
+    ADCSRA |= (1 << ADEN) | (1 << ADIE); // liga o conversor e habilita interrupção
 }
 
 void ADC_start_conversion(uint8_t channel) {
@@ -57,7 +57,7 @@ int main(){
     setup_PWM();
     ADC_init();
     sei();
-    
+
     while(1){
         //
     }
