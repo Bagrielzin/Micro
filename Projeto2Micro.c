@@ -69,7 +69,7 @@ ISR(INT1_vect)
 ISR(ADC_vect)
 {
     adc_result = ADC;
-    uint8_t porcentagem_iluminacao = (100 - (adc_result/1023.0)*(100));
+    uint8_t porcentagem_iluminacao = ((adc_result/1023.0)*(100));
 
     if (channel == SENSOR_QUARTO_CHANNEL)
         UART_send("Porcentagem de iluminação do quarto: ");
